@@ -3,6 +3,8 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const merge = require('webpack-merge');
 
+const parts = require('./webpack.parts');
+
 const PATHS = {
   app: path.join(__dirname, 'app'),
   build: path.join(__dirname, 'build')
@@ -22,7 +24,12 @@ const common = merge(
         title: 'Webpack demo'
       })
     ]
-  }
+  },
+  parts.devServer({
+    // Customize host/port here if needed
+    host: process.env.HOST,
+    port: process.env.PORT
+  })
 );
 
 module.exports = function (env) {
