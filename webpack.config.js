@@ -25,6 +25,7 @@ const common = merge(
       })
     ]
   },
+  parts.lintJavascript(PATHS.app),
   parts.devServer({
     // Customize host/port here if needed
     host: process.env.HOST,
