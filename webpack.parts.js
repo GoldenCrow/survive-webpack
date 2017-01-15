@@ -66,9 +66,11 @@ exports.loadCSS = function (paths) {
             {
               loader: 'css-loader',
               options: {
-                modules: true
+                modules: true,
+                importLoaders: 1
               }
-            }
+            },
+            'postcss-loader'
           ]
         }
       ]
