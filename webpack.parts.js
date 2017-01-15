@@ -61,8 +61,15 @@ exports.loadCSS = function (paths) {
           // Restrict extraction process to the given
           // paths.
           include: paths,
-
-          use: ['style-loader', 'css-loader']
+          use: [
+            'style-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                modules: true
+              }
+            }
+          ]
         }
       ]
     }
