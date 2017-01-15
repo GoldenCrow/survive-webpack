@@ -1,3 +1,4 @@
+import './main.css';
 import component from './component';
 
 let demoComponent = component();

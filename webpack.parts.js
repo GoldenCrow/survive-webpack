@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 
-exports.devServer = function(options) {
+exports.devServer = function (options) {
   return {
     devServer: {
       // Enable history API fallback so HTML5 History API based
@@ -36,7 +36,7 @@ exports.devServer = function(options) {
   };
 };
 
-exports.lintJavascript = function(paths) {
+exports.lintJavascript = function (paths) {
   return {
     module: {
       rules: [
@@ -46,6 +46,23 @@ exports.lintJavascript = function(paths) {
 
           use: 'eslint-loader',
           enforce: 'pre'
+        }
+      ]
+    }
+  };
+};
+
+exports.loadCSS = function (paths) {
+  return {
+    module: {
+      rules: [
+        {
+          test: /\.css$/,
+          // Restrict extraction process to the given
+          // paths.
+          include: paths,
+
+          use: ['style-loader', 'css-loader']
         }
       ]
     }

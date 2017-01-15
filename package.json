@@ -12,10 +12,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "css-loader": "^0.26.1",
     "eslint": "^3.13.1",
     "eslint-loader": "^1.6.1",
     "html-webpack-plugin": "^2.26.0",
     "nodemon": "^1.11.0",
+    "style-loader": "^0.13.1",
     "webpack": "^2.2.0-rc.4",
     "webpack-dev-server": "^2.2.0-rc.0",
     "webpack-merge": "^2.4.0"
