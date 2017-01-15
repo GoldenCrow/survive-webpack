@@ -14,10 +14,12 @@
   "devDependencies": {
     "autoprefixer": "^6.6.1",
     "css-loader": "^0.26.1",
+    "cssnext": "^1.8.4",
     "eslint": "^3.13.1",
     "eslint-loader": "^1.6.1",
     "html-webpack-plugin": "^2.26.0",
     "nodemon": "^1.11.0",
+    "postcss-cssnext": "^2.9.0",
     "postcss-loader": "^1.2.2",
     "precss": "^1.4.0",
     "style-loader": "^0.13.1",
