@@ -1,10 +1,9 @@
-import styles from './main.css';
-
+import 'purecss';
 export default function () {
   const element = document.createElement('h1');
+
+  element.className = 'pure-button';
   element.innerHTML = 'Hello world';
-  // Attach the generated class name
-  element.className = styles.redButton;
 
   return element;
 }

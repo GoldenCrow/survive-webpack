@@ -42,6 +42,7 @@ module.exports = function (env) {
   }
   return merge(
     common,
+    parts.loadCSS(),
     {
       // Disable performance hints during development
       performance: {
