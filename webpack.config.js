@@ -25,7 +25,6 @@ const common = merge(
       })
     ]
   },
-  parts.loadCSS(),
   parts.lintJavascript(PATHS.app),
   parts.devServer({
     // Customize host/port here if needed
@@ -35,6 +34,12 @@ const common = merge(
 );
 
 module.exports = function (env) {
+  if (env === 'production') {
+    return merge(
+      common,
+      parts.extractCSS()
+    );
+  }
   return merge(
     common,
     {

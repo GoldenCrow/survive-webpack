@@ -17,6 +17,7 @@
     "cssnext": "^1.8.4",
     "eslint": "^3.13.1",
     "eslint-loader": "^1.6.1",
+    "extract-text-webpack-plugin": "^2.0.0-beta.4",
     "html-webpack-plugin": "^2.26.0",
     "nodemon": "^1.11.0",
     "postcss-cssnext": "^2.9.0",
