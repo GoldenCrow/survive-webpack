@@ -54,6 +54,36 @@ exports.lintJavascript = function (paths) {
   };
 };
 
+exports.loadJS = function (paths) {
+  return {
+    module: {
+      rules: {
+        // Match files against RegExp
+        test: /\.js$/,
+
+        // Restrict matching to a directory. This
+        // also accepts an array of paths.
+        // Although optional, I prefer to set this for
+        // JavaScript source as it helps with
+        // performance and keeps the configuration cleaner.
+        include: paths,
+
+        // Apply loaders against it. These need to
+        // be installed separately. In this case our
+        // project would need *babel-loader*. This
+        // accepts an array of loaders as well.
+        use: {
+          loader: 'babel-loader',
+          options: {
+            cacheDirectory: true,
+            presets: ['react', '2015']
+          }
+        }
+      }
+    }
+  };
+};
+
 exports.loadCSS = function (paths) {
   return {
     module: {
@@ -105,7 +135,7 @@ exports.extractCSS = function (paths) {
   };
 };
 
-exports.purifyCSS = function(paths) {
+exports.purifyCSS = function (paths) {
   paths = Array.isArray(paths) ? paths : [paths];
 
   return {
@@ -129,7 +159,7 @@ exports.purifyCSS = function(paths) {
   };
 };
 
-exports.lintCSS = function(paths) {
+exports.lintCSS = function (paths) {
   return {
     module: {
       rules: [
@@ -140,6 +170,60 @@ exports.lintCSS = function(paths) {
           enforce: 'pre'
         }
       ]
+    }
+  };
+};
+
+exports.urlLoader = function (paths) {
+  return {
+    module: {
+      test: /\.(jpg|png)$/,
+      loader: 'url-loader',
+      include: paths,
+      options: {
+        limit: 25000
+      }
+    }
+  };
+};
+
+exports.loadImage = function (paths) {
+  return {
+    modules: {
+      test: /\.(jpg|png)$/,
+      loader: 'file-loader',
+      include: paths,
+      options: {
+        name: '[path][name].[hash].[ext]'
+      }
+    }
+  };
+};
+
+exports.loadSVG = function (paths) {
+  return {
+    modules: {
+      rules: {
+        test: /\.svg$/,
+        use: 'file-loader',
+        include: paths
+      }
+    }
+  };
+};
+
+exports.loadFonts = function (options) {
+  const name = (options && options.name) || 'fonts/[hash].[ext]';
+  return {
+    module: {
+      rules: [{
+        // Capture eot, ttf, svg, woff, and woff2
+        test: /\.(eot|ttf|svg|woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'file-loader',
+        options: {
+          name: name
+        }
+      }]
     }
   };
 };

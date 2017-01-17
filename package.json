@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test": "mocha ./test",
+    "test:watch": "mocha ./test --watch",
     "test:lint": "eslint . --cache",
     "start": "nodemon --watch webpack.config.js --exec \"webpack-dev-server --env development\"",
     "build": "webpack --env production"
@@ -19,6 +21,7 @@
     "eslint-loader": "^1.6.1",
     "extract-text-webpack-plugin": "^2.0.0-beta.4",
     "html-webpack-plugin": "^2.26.0",
+    "mocha": "^3.2.0",
     "nodemon": "^1.11.0",
     "postcss-cssnext": "^2.9.0",
     "postcss-loader": "^1.2.2",
