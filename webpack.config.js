@@ -37,7 +37,8 @@ module.exports = function (env) {
   if (env === 'production') {
     return merge(
       common,
-      parts.extractCSS()
+      parts.extractCSS(),
+      parts.purifyCSS(PATHS.app)
     );
   }
   return merge(
