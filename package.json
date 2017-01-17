@@ -25,6 +25,7 @@
     "precss": "^1.4.0",
     "purifycss-webpack-plugin": "^2.0.3",
     "style-loader": "^0.13.1",
+    "stylelint": "^7.7.1",
     "webpack": "^2.2.0-rc.4",
     "webpack-dev-server": "^2.2.0-rc.0",
     "webpack-merge": "^2.4.0"

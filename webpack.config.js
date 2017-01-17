@@ -25,6 +25,7 @@ const common = merge(
       })
     ]
   },
+  parts.lintCSS(PATHS.app),
   parts.lintJavascript(PATHS.app),
   parts.devServer({
     // Customize host/port here if needed
