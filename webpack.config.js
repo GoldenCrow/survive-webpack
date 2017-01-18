@@ -51,6 +51,7 @@ module.exports = function (env) {
           entries: ['react']
         }
       ]),
+      parts.clean(PATHS.build),
       parts.generateSourcemaps('source-map'),
       parts.extractCSS(),
       parts.purifyCSS(PATHS.app)
@@ -59,7 +60,7 @@ module.exports = function (env) {
   return merge(
     common,
     parts.generateSourcemaps('eval-source-map'),
-    parts.loadJS(),
+    parts.loadJavascript(PATHS.app),
     parts.loadCSS(),
     {
       // Disable performance hints during development

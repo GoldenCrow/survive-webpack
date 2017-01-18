@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const PurifyCSSPlugin = require('purifycss-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 exports.devServer = function (options) {
   return {
@@ -54,32 +55,25 @@ exports.lintJavascript = function (paths) {
   };
 };
 
-exports.loadJS = function (paths) {
+exports.loadJavascript = function (paths) {
   return {
     module: {
-      rules: {
-        // Match files against RegExp
-        test: /\.js$/,
+      rules: [
+        {
+          test:/\.js$/,
+          include: paths,
 
-        // Restrict matching to a directory. This
-        // also accepts an array of paths.
-        // Although optional, I prefer to set this for
-        // JavaScript source as it helps with
-        // performance and keeps the configuration cleaner.
-        include: paths,
-
-        // Apply loaders against it. These need to
-        // be installed separately. In this case our
-        // project would need *babel-loader*. This
-        // accepts an array of loaders as well.
-        use: {
           loader: 'babel-loader',
           options: {
-            cacheDirectory: true,
-            presets: ['react', '2015']
+            // Enable caching for improved performance during
+            // development.
+            // It uses default OS directory by default. If you need
+            // something more custom, pass a path to it.
+            // I.e., { cacheDirectory: '<path>' }
+            cacheDirectory: true
           }
         }
-      }
+      ]
     }
   };
 };
@@ -293,6 +287,14 @@ exports.generateSourcemaps = function (options) {
         // See https://github.com/webpack/webpack/issues/2669.
         // noSources: bool
       })
+    ]
+  };
+};
+
+exports.clean = function (path) {
+  return {
+    plugins: [
+      new CleanWebpackPlugin([path])
     ]
   };
 };
