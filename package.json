@@ -9,7 +9,8 @@
     "test:lint": "eslint . --cache",
     "start": "nodemon --watch webpack.config.js --exec \"webpack-dev-server --env development\"",
     "build": "webpack --env production",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "stats": "webpack --env production --profile --json > stats.json"
   },
   "keywords": [],
   "author": "",
