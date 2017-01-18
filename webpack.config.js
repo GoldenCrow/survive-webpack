@@ -38,13 +38,14 @@ module.exports = function (env) {
   if (env === 'production') {
     return merge(
       common,
+      parts.generateSourcemaps('source-map'),
       parts.extractCSS(),
       parts.purifyCSS(PATHS.app)
     );
   }
   return merge(
     common,
-    parts.loadJS(),
+    parts.generateSourcemaps('eval-source-map'),
     parts.loadCSS(),
     {
       // Disable performance hints during development

@@ -227,3 +227,19 @@ exports.loadFonts = function (options) {
     }
   };
 };
+
+exports.generateSourcemaps = function (type) {
+  return {
+    output: {
+      // Modify the name of the generated sourcemap file.
+      // You can use [file], [id], and [hash] replacements here.
+      // The default option is enough for most use cases.
+      sourceMapFilename: '[file].map', // Default
+      
+      // This is the sourcemap filename template. It's default
+      // format depends on the devtool option used. You don't
+      // need to modify this often.
+      devtoolModuleFilenameTemplate: 'webpack:///[resource-path]?[loaders]'
+    }
+  };
+};
