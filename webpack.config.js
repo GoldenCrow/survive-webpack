@@ -65,6 +65,9 @@ module.exports = function (env) {
             return userRequest && userRequest.indexOf('node_modules') >= 0;
           },
           entries: ['react']
+        },
+        {
+          name: 'manifest'
         }
       ]),
       parts.clean(PATHS.build),
@@ -77,7 +80,7 @@ module.exports = function (env) {
     common,
     parts.generateSourcemaps('eval-source-map'),
     parts.loadJavascript(PATHS.app),
-    parts.loadJavascript(),
+    parts.minify(),
     parts.loadCSS(),
     {
       // Disable performance hints during development
