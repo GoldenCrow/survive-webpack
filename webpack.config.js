@@ -40,9 +40,15 @@ module.exports = function (env) {
       common,
       {
         output: {
+          chunkFilename: 'scripts/[hash].js',
+          filename: '[name].[hash].js',
+
           // Tweak this to match your GitHub project name
           publicPath: '/survive-webpack/'
-        }
+        },
+        plugins: [
+          new webpack.HashedModuleIdsPlugin()
+        ]
       },
       parts.setFreeVariable(
         'process.env.NODE_ENV',
