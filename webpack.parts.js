@@ -228,18 +228,52 @@ exports.loadFonts = function (options) {
   };
 };
 
-exports.generateSourcemaps = function (type) {
+exports.generateSourcemaps = function (options) {
+  const {
+    test,
+    include,
+    separateSourcemaps,
+    columnMappings } = options;
+  
+  // Enabe functionality as you want to expose it
   return {
-    output: {
-      // Modify the name of the generated sourcemap file.
-      // You can use [file], [id], and [hash] replacements here.
-      // The default option is enough for most use cases.
-      sourceMapFilename: '[file].map', // Default
-      
-      // This is the sourcemap filename template. It's default
-      // format depends on the devtool option used. You don't
-      // need to modify this often.
-      devtoolModuleFilenameTemplate: 'webpack:///[resource-path]?[loaders]'
-    }
+    plugins: [
+      new webpack.SourceMapDevToolPlugin({
+        // Match assets just like for loader.
+        test: test, // string | RegExp | Array,
+        include: include, // string | RegExp | Array,
+
+        // `exclude` matches file names, not package names!
+        // exclude: string | RegExp | Array,
+
+        // If filename is set, output to this file.
+        // See `sourceMapFileName`.
+        // filename: string,
+
+        // This line is appended to the original asset processed.
+        // For instance '[url]' would get replaced with an url
+        // to the sourcemap.
+        // append: false | string,
+
+        // See `devtoolModuleFilenameTemplate` for specifics.
+        // moduleFilenameTemplate: string,
+        // fallbackModuleFilenameTemplate: string,
+        
+        // If false, separate sourcemaps aren't generated.
+        module: separateSourcemaps,
+
+        // If false, column mapppings aren't generated.
+        columns: columnMappings,
+
+        // Use simpler line to line mappings for the matched modules.
+        // lineToLine: bool | {test, include, exclude},
+
+        // Remove source content from sourcemaps. This is useful
+        // especially if your sourcemaps are very big (over 10MB)
+        // as browsers can struggle with those.
+        // See https://github.com/webpack/webpack/issues/2669.
+        // noSources: bool
+      })
+    ]
   };
 };
