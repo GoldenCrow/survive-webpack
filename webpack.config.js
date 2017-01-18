@@ -67,6 +67,7 @@ module.exports = function (env) {
     common,
     parts.generateSourcemaps('eval-source-map'),
     parts.loadJavascript(PATHS.app),
+    parts.loadJavascript(),
     parts.loadCSS(),
     {
       // Disable performance hints during development
