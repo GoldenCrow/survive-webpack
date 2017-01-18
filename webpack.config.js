@@ -41,7 +41,7 @@ module.exports = function (env) {
       {
         output: {
           // Tweak this to match your GitHub project name
-          publicPath: '/webpack-demo/'
+          publicPath: '/survive-webpack/'
         }
       },
       parts.extractBundles([
