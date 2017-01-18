@@ -95,13 +95,7 @@ exports.loadCSS = function (paths) {
           include: paths,
           use: [
             'style-loader',
-            {
-              loader: 'css-loader',
-              options: {
-                modules: true,
-                importLoaders: 1
-              }
-            },
+            'css-loader',
             'postcss-loader'
           ]
         }
