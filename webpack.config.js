@@ -44,6 +44,10 @@ module.exports = function (env) {
           publicPath: '/survive-webpack/'
         }
       },
+      parts.setFreeVariable(
+        'process.env.NODE_ENV',
+        'production'
+      ),
       parts.extractBundles([
         {
           name: 'vendor',
