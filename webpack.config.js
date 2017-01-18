@@ -38,6 +38,12 @@ module.exports = function (env) {
   if (env === 'production') {
     return merge(
       common,
+      {
+        output: {
+          // Tweak this to match your GitHub project name
+          publicPath: '/webpack-demo/'
+        }
+      },
       parts.extractBundles([
         {
           name: 'vendor',
