@@ -110,6 +110,31 @@ exports.loadCSS = function (paths) {
   };
 };
 
+exports.extractBundles = function (bundles, options) {
+  const entry = {};
+  const names = [];
+
+  // Set up entries and names.
+  bundles.forEach(({ name, entries }) => {
+    if (entries) {
+      entry[name] = entries;
+    }
+
+    names.push(name);
+  });
+
+  return {
+    // Define an entry point needed for splitting.
+    entry,
+    plugins: [
+      // Extract bundles.
+      new webpack.optimize.CommonsChunkPlugin(
+        Object.assign({}, options, { names })
+      )
+    ]
+  };
+};
+
 exports.extractCSS = function (paths) {
   return {
     module: {
@@ -234,7 +259,7 @@ exports.generateSourcemaps = function (options) {
     include,
     separateSourcemaps,
     columnMappings } = options;
-  
+
   // Enabe functionality as you want to expose it
   return {
     plugins: [
@@ -258,7 +283,7 @@ exports.generateSourcemaps = function (options) {
         // See `devtoolModuleFilenameTemplate` for specifics.
         // moduleFilenameTemplate: string,
         // fallbackModuleFilenameTemplate: string,
-        
+
         // If false, separate sourcemaps aren't generated.
         module: separateSourcemaps,
 

@@ -1,3 +1,4 @@
+import 'react';
 import 'purecss';
 import './main.css';
 import component from './component';
