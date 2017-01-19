@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackTemplate = require('html-webpack-template')
 const merge = require('webpack-merge');
 
 const parts = require('./webpack.parts');
@@ -13,18 +14,31 @@ const PATHS = {
 const common = merge(
   {
     entry: {
-      app: PATHS.app
+      app: `${PATHS.app}/index.jsx`
     },
     output: {
       path: PATHS.build,
       filename: '[name].js'
     },
+    resolve: {
+      extensions: ['.js', '.jsx'],
+      alias: {
+        'react': 'react-lite',
+        'react-dom': 'react-lite'
+      }
+    },
     plugins: [
       new HtmlWebpackPlugin({
-        title: 'Webpack demo'
-      })
+        template: HtmlWebpackTemplate,
+        title: 'Demo app',
+        appMountId: 'app', // Generate #app where to mount
+        mobile: true, // Scale page mobile
+        inject: false // html-webpack-template requires this to work
+      }),
     ]
   },
+  parts.loadJavascript(PATHS.app),
+  parts.loadCSS(),
   parts.lintCSS(PATHS.app),
   parts.lintJavascript(PATHS.app),
   parts.devServer({
@@ -79,9 +93,7 @@ module.exports = function (env) {
   return merge(
     common,
     parts.generateSourcemaps('eval-source-map'),
-    parts.loadJavascript(PATHS.app),
     parts.minify(),
-    parts.loadCSS(),
     {
       // Disable performance hints during development
       performance: {

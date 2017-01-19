@@ -60,7 +60,7 @@ exports.loadJavascript = function (paths) {
     module: {
       rules: [
         {
-          test:/\.js$/,
+          test:/\.(js|jsx)$/,
           include: paths,
 
           loader: 'babel-loader',
